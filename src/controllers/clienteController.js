@@ -1,4 +1,4 @@
-import { findAllClientes } from "../repositories/clienteRepository";
+import { findAllClientes } from "../repositories/clienteRepository.js";
 
 //Controlador que busca todos os clientes
 export async function getAllClientes(req, res) {
