@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { getAllClientes } from "../controllers/clienteController";
 
 const router = Router();
 
