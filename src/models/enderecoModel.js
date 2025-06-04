@@ -45,7 +45,7 @@ const Endereco = sequelize.define(
   }
 );
 
-//associação com Cliente
+// Associação com Cliente
 Endereco.belongsTo(Cliente, { foreignKey: "cliente_id", as: "cliente" });
 
 export default Endereco;
