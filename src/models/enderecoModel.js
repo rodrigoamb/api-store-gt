@@ -17,22 +17,24 @@ const Endereco = sequelize.define(
         model: "clientes",
         key: "id",
       },
-      rua: {
-        type: DataTypes.STRING(100),
-        allowNull: false,
-      },
-      cidade: {
-        type: DataTypes.STRING(50),
-        allowNull: false,
-      },
-      estado: {
-        type: DataTypes.STRING(2),
-        allowNull: false,
-      },
-      cep: {
-        type: DataTypes.STRING(9),
-        allowNull: false,
-      },
+      onDelete: "CASCADE",
+      onUpdate: "CASCADE",
+    },
+    rua: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+    },
+    cidade: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+    },
+    estado: {
+      type: DataTypes.STRING(2),
+      allowNull: false,
+    },
+    cep: {
+      type: DataTypes.STRING(9),
+      allowNull: false,
     },
   },
   {
