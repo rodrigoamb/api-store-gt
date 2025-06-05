@@ -1,11 +1,22 @@
 import Endereco from "../models/enderecoModel.js";
+import Cliente from "../models/clienteModel.js";
 
 export async function findAllEnderecos() {
-  return await Endereco.findAll();
+  return await Endereco.findAll({
+    include: {
+      model: Cliente,
+      as: "cliente",
+    },
+  });
 }
 
 export async function findEnderecoById(id) {
-  return await Endereco.findByPk(id);
+  return await Endereco.findByPk(id, {
+    include: {
+      model: Cliente,
+      as: "cliente",
+    },
+  });
 }
 
 export async function createEndereco({ cliente_id, rua, cidade, estado, cep }) {
