@@ -7,9 +7,11 @@ import produtoRoutes from "./produtoRoutes.js";
 import pedidoRoutes from "./pedidoRoutes.js";
 import pagamentoRoutes from "./pagamentoRoutes.js";
 import pedidoItemRoutes from "./pedidoItemRoutes.js";
+import authRoutes from "./authRoutes.js";
 
 const router = Router();
 
+router.use("/auth", authRoutes);
 router.use("/clientes", clienteRoutes);
 router.use("/enderecos", enderecoRoutes);
 router.use("/categorias", categoriaRoutes);
