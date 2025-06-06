@@ -49,16 +49,41 @@ export async function login(req, res) {
       expiresIn: JWT_EXPIRES_IN,
     });
 
+    //armazenando cookies no navegador do usuario
     res.cookie("token", token, {
-      httpOnly: true,
-      secure: false,
-      sameSite: "lax",
-      maxAge: 7200000,
+      httpOnly: true, //não permite acessar/editar o cookie do lado do cliente
+      secure: false, //em produção, coloque true para que só seja permitido setar o cookie quando a requisicao for https
+      sameSite: "lax", //diz como é o modo que o cookie é transferido nas requisições, pode deixa "lax" é seguro.
+      maxAge: 7200000, //tempo de vida do cookie
     });
 
     return res.json({ message: "Login realizado com sucesso" });
   } catch (error) {
     console.error("Erro ao fazer o login", error);
     return res.status(500).json({ message: "Erro interno no servidor" });
+  }
+}
+
+//logout do usuario
+export async function logout(req, res) {
+  res.clearCookie("token");
+  return res.json({ message: "Logout feito com sucesso." });
+}
+
+//perfil do usuario logado
+export async function perfil(req, res) {
+  const usuarioId = req.user.id;
+
+  try {
+    const usuario = await authRepository.findUserById(usuarioId);
+
+    if (!usuario) {
+      return res.status(404).json({ message: "usuario nao encontrado" });
+    }
+
+    return res.json(usuario);
+  } catch (error) {
+    console.error("erro ao buscar o perfil:", error);
+    return res.status(500).json({ message: "Erro interno no servidor." });
   }
 }
